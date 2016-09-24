@@ -1,4 +1,4 @@
-
+/*
 
 public class GumballMachineTestDrive {
 
@@ -21,5 +21,10 @@ public class GumballMachineTestDrive {
 		//gumballMachine.turnCrank();
 
 		System.out.println(gumballMachine);
+		
+		gumballMachine.isGumballInSlot();
+		gumballMachine.takeGumballFromSlot();
+		gumballMachine.isGumballInSlot();
 	}
 }
+*/
