@@ -1,6 +1,6 @@
 
 
-public class GumballMachine {
+public class GumballMachine implements IGumballMachine{
  
 	State soldOutState;
 	State noQuarterState;
@@ -8,7 +8,7 @@ public class GumballMachine {
 	State soldState;
  
 	State state = soldOutState;
-	int count = 0;
+	int count = 0; //
  
 	public GumballMachine(int numberGumballs) {
 		soldOutState = new SoldOutState(this);

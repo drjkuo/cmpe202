@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.params=gumballMachine
-comment0.target=HasQuarterState(gumballstate.GumballMachine)
+comment0.target=HasQuarterState(GumballMachine)
 comment1.params=
 comment1.target=void\ insertQuarter()
 comment2.params=
