@@ -93,7 +93,7 @@ public class GumballMachineTestDrive1 {
 		assertEquals(false, gm1.isGumballInSlot());
 	}
 	
-	@Test
+	@Test //test5
 	public void testEjectCoin() //test inset coins and eject all coins 
 	{
 		System.out.println("====0.5, then eject coins===="); 
