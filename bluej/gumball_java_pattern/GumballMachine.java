@@ -21,6 +21,7 @@ public class GumballMachine implements IGumballMachine{
 		this.count = numberGumballs;
  		if (numberGumballs > 0) {
 			state = noEnoughCoinState;
+			coin = 0;
 		} 
 	}
  

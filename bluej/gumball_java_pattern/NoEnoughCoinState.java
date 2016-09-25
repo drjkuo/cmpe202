@@ -10,15 +10,16 @@ public class NoEnoughCoinState implements State {
 	public void insertCoin(int c) {
 		System.out.println("You inserted a coin");
 		gumballMachine.setCoin( gumballMachine.getCoin() + c);
-		gumballMachine.setState(gumballMachine.getHasEnoughCoinState());
+		if (gumballMachine.getCoin() >= 50)
+			gumballMachine.setState(gumballMachine.getHasEnoughCoinState());		
 	}
  
 	public void ejectCoin() {
-		System.out.println("You haven't inserted a quarter");
+		System.out.println("Not enough coin");
 	}
  
 	public void turnCrank() {
-		System.out.println("You turned, but there's no quarter");
+		System.out.println("You turned, but there's no enough coin");
 	 }
  
 	public void dispense() {

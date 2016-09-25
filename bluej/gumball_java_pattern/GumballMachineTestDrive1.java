@@ -28,38 +28,103 @@ public class GumballMachineTestDrive1 {
 	public void tearDown() throws Exception {
 	}
 
-	@Test
-	public void test() {
-		System.out.println("\n------Test No Coin to crank ---------"); 
+	
+	@Test //test1
+	public void testNoCoinCrank() {
+		System.out.println("====No coin inserted, and crank====");
 		gm1.turnCrank();
 		assertEquals(false, gm1.isGumballInSlot());
 		gm1.takeGumballFromSlot();
 	}
 	
-	//2.5
-	@Test
+	
+	@Test //test2
 	public void testNoEnoughCoinCrank()
 	{
-		System.out.println("\n------Test No Enough Coin to crank ---------"); gm1.insertDime();
+		System.out.println("====insert 0.40, and crank====");
+		gm1.insertDime();
+		//System.out.println(gm1.getCoin());
 		gm1.insertNickel();
+		//System.out.println(gm1.getCoin());
 		gm1.insertQuarter();
+		//System.out.println(gm1.getCoin());
 		gm1.turnCrank();
-		assertEquals(false, gm1.isGumballInSlot()); gm1.takeGumballFromSlot();
+		//System.out.println(gm1.getCoin());
+		assertEquals(40, gm1.getCoin()); 
+		//gm1.takeGumballFromSlot();
 	}
 	
+	@Test //test3
+	public void testOneDollarCrank()
+	{
+		System.out.println("====1.00, and crank====");
+		gm1.insertQuarter();
+		//System.out.println(gm1.getCoin());
+		gm1.insertQuarter();
+		//System.out.println(gm1.getCoin());
+		gm1.insertQuarter();
+		//System.out.println(gm1.getCoin());
+		gm1.insertQuarter();
+		gm1.turnCrank();
+		gm1.turnCrank();
+		//System.out.println(gm1.getCoin());
+		//assertEquals(1, gm1.getGumballInSlot()); 
+		//gm1.takeGumballFromSlot();
+		assertEquals(1, gm1.getGumballInSlot());
+	}
+	
+	@Test //test4
+	public void test50centCrankand50centCrank()
+	{
+		System.out.println("====0.5, then crank, and do it again====");
+		gm1.insertQuarter();
+		//System.out.println(gm1.getCoin());
+		gm1.insertQuarter();
+		gm1.turnCrank();
+		//System.out.println(gm1.getCoin());
+		gm1.insertQuarter();
+		//System.out.println(gm1.getCoin());
+		gm1.insertQuarter();
+		gm1.turnCrank();
+		assertEquals(true, gm1.isGumballInSlot()); 
+		//System.out.println(gm1.getCoin());
+		//assertEquals(1, gm1.getGumballInSlot()); 
+		gm1.takeGumballFromSlot();
+		assertEquals(false, gm1.isGumballInSlot());
+	}
+	
+	@Test
+	public void testEjectCoin() //test inset coins and eject all coins 
+	{
+		System.out.println("====0.5, then eject coins===="); 
+		gm1.insertQuarter();
+		gm1.insertNickel();
+		gm1.insertDime();
+		gm1.insertDime();
+		gm1.ejectCoin();
+		assertEquals(false, gm1.isGumballInSlot()); 
+		assertEquals(0, gm1.getCoin());
+	}
+	
+	
+	/*
 	//Test requirement 2.3
 	@Test
 	public void testEnoughCoinCrank()
 	//test if have enough coin, 50 cents in the machine // and turn crank
 	{
-	System.out.println("\n------Test have Enough Coin to crank ---------"); gm1.insertQuarter();
+	//System.out.println("\n------Test have Enough Coin to crank ---------"); 
+	gm1.insertQuarter();
 	gm1.insertNickel();
 	gm1.insertDime();
 	gm1.insertQuarter();
 	gm1.turnCrank();
-	assertEquals(true, gm1.isGumballInSlot()); gm1.takeGumballFromSlot();
+	assertEquals(true, gm1.isGumballInSlot()); 
+	gm1.takeGumballFromSlot();
 	assertEquals(false, gm1.isGumballInSlot());
 	}
+	
+	/*
 	
 	//Test requirement 2.4
 	@Test
@@ -67,15 +132,18 @@ public class GumballMachineTestDrive1 {
 	//test have more than 50 cents to crank,
 	//and have other enough 50 cents to crank again
 	//test if have coin but not enough, 50 cents in the machine // and turn crank
-	System.out.println("\n------Test have Enough Coin for two gumball and crank ---------"); gm1.insertQuarter();
+	//System.out.println("\n------Test have Enough Coin for two gumball and crank ---------"); gm1.insertQuarter();
 
 	gm1.insertNickel();
 	gm1.insertQuarter();
 	gm1.turnCrank();
-	assertEquals(true, gm1.isGumballInSlot()); gm1.insertQuarter();
+	assertEquals(true, gm1.isGumballInSlot()); 
+	gm1.insertQuarter();
 	gm1.insertQuarter();
 	gm1.insertDime();
-	gm1.turnCrank(); gm1.takeGumballFromSlot(); assertEquals(false, gm1.isGumballInSlot());
+	gm1.turnCrank(); 
+	gm1.takeGumballFromSlot(); 
+	assertEquals(false, gm1.isGumballInSlot());
 	}
 	
 	@Test
@@ -83,17 +151,19 @@ public class GumballMachineTestDrive1 {
 	//test have more than 50 cents to crank,
 	// but have not other enough 50 cents to crank again
 	{
-	System.out.println("\n------Test have not Enough Coin for two gumball and crank ---------"); gm1.insertQuarter();
-	gm1.insertNickel();
+	//System.out.println("Test have not Enough Coin for two gumball and crank ---------"); gm1.insertQuarter();
 	gm1.insertQuarter();
-	gm1.insertNickel();
+	gm1.insertQuarter();
+	gm1.insertQuarter();
+	gm1.insertQuarter();
 	gm1.turnCrank();
 	assertEquals(true, gm1.isGumballInSlot()); gm1.turnCrank(); gm1.takeGumballFromSlot(); assertEquals(false, gm1.isGumballInSlot());
 	}
+	
 	@Test
 	public void testEjectAllCoins() //test inset coins and eject all coins 
 	{
-	System.out.println("\n------Test insert Coin and eject all coins ---------"); gm1.insertQuarter();
+	//System.out.println("\n------Test insert Coin and eject all coins ---------"); gm1.insertQuarter();
 	gm1.insertNickel();
 	gm1.insertDime();
 	gm1.insertQuarter();
@@ -106,7 +176,7 @@ public class GumballMachineTestDrive1 {
 	public void testEjectCoinsAfterTakeGumball() 
 	{
 	//test eject left coins after take gumball
-	System.out.println("\n------Test insert Coin and eject left coin after take gumball ---------"); gm1.insertNickel();
+	//System.out.println("\n------Test insert Coin and eject left coin after take gumball ---------"); gm1.insertNickel();
 	gm1.insertQuarter();
 	gm1.insertDime();
 	gm1.insertQuarter();
@@ -115,5 +185,7 @@ public class GumballMachineTestDrive1 {
 	gm1.turnCrank();
 	assertEquals(true, gm1.isGumballInSlot()); gm1.takeGumballFromSlot(); assertEquals(false, gm1.isGumballInSlot()); gm1.ejectCoin();
 	} 
+	
+	*/
 
 }
