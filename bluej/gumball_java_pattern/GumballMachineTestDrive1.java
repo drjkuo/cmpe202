@@ -94,7 +94,7 @@ public class GumballMachineTestDrive1 {
 	}
 	
 	@Test //test5
-	public void testEjectCoin() //test inset coins and eject all coins 
+	public void testEjectCoin() //test insert coins and eject all coins 
 	{
 		System.out.println("====0.5, then eject coins===="); 
 		gm1.insertQuarter();
